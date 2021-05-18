@@ -3,13 +3,14 @@ kind: Ingress
 metadata: 
   name: general-ingress 
   namespace: linkerd-demo
+  annotations:
+    kubernetes.io/ingress.class: gce
 spec: 
   rules: 
     - host: realworks.tech
       http:
         paths:
         - path: /*
-          pathType: prefix
           backend:
             serviceName: redis-publisher
             servicePort: 5001
