@@ -8,6 +8,6 @@ spec:
     - host: realworks.tech
       http:
         paths:
-        - entry:
+        - backend:
             serviceName: redis-publisher
             servicePort: 5001
