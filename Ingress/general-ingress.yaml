@@ -12,5 +12,5 @@ spec:
         paths:
         - path: /*
           backend:
-            serviceName: redis-publisher
+            serviceName: kafka-producer
             servicePort: 5001
