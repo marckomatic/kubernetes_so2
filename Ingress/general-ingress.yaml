@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata: 
+  name: general-ingress 
+  namespace: linkerd-demo
+spec: 
+  rules: 
+    - host: realworks.tech
+      http:
+        paths:
+          - entry:
+              serviceName: redis-publisher
+              servicePort: 5001
