@@ -1,0 +1,37 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: kafka-producer
+  namespace: linkerd-demo
+  labels: 
+    app: kafka-producer
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: kafka-producer
+  template: 
+    metadata: 
+      labels: 
+        app: kafka-producer
+    spec: 
+      containers: 
+      - name: kafka-producer
+        image: marckomatic/kafka-producer
+        ports: 
+        - containerPort: 4000
+---
+apiVersion: v1
+kind: Service
+metadata: 
+  name: kafka-producer
+  namespace: linkerd-demo
+spec: 
+  selector: 
+    app: kafka-producer
+  type: LoadBalancer
+  ports: 
+    - protocol: TCP 
+      port: 4000
+      targetPort: 4000
+      nodePort: 31001

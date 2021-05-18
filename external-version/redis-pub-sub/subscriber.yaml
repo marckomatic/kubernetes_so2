@@ -1,0 +1,20 @@
+apiVersion: apps/v1 
+kind: Deployment
+metadata: 
+  name: redis-subscriber
+  namespace: linkerd-demo
+  labels: 
+    app: redis-subscriber
+spec: 
+  replicas: 1
+  selector: 
+    matchLabels: 
+      app: redis-subscriber
+  template: 
+    metadata: 
+      labels: 
+        app: redis-subscriber
+    spec: 
+      containers: 
+      - name: redis-subscriber
+        image: marckomatic/redis-subscriber
